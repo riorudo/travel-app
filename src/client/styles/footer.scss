@@ -1,0 +1,22 @@
+@import "variables";
+
+footer {
+  grid-area: ft;
+  align-self: end;
+  box-sizing: border-box;
+  padding: 20px 10px;
+  color: $base-color;
+  display: block;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.footer {
+  text-align: center;
+  line-height: 1.6em;
+}
+
+.copyleft {
+  display: inline-block;
+  transform: rotate(180deg);
+}

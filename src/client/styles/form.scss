@@ -1,0 +1,31 @@
+@import "variables";
+
+form {
+  background-color: $base-background-color;
+  border: 1px solid $base-color;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+input, textarea {
+  padding: 10px 10px;
+  width: 100%;
+  line-height: 16px;
+  margin: 10px 0;
+}
+
+.form {
+  background-color: $base-color;
+}
+
+.formDesc {
+  display: block;
+  padding: 0 0 10px 0;
+}
+
+.submitBtn {
+  cursor: pointer;
+  border-radius: 3px;
+  background-color: $base-color;
+  padding: 15px;
+}

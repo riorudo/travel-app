@@ -1,0 +1,23 @@
+@import "variables";
+
+header {
+  grid-area: hd;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  padding: 10px 40px;
+}
+
+.title {
+  color: $base-color;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.logo {
+  & img {
+    width: 150px;
+  }
+}
