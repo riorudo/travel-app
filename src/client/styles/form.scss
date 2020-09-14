@@ -1,31 +1,36 @@
 @import "variables";
 
-form {
-  background-color: $base-background-color;
+input {
   border: 1px solid $base-color;
   border-radius: 3px;
-  padding: 20px;
+  padding: 5px;
 }
 
-input, textarea {
-  padding: 10px 10px;
-  width: 100%;
-  line-height: 16px;
-  margin: 10px 0;
+.form-group {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.form {
-  background-color: $base-color;
+.form-row {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.formDesc {
-  display: block;
-  padding: 0 0 10px 0;
+.form-label {
+  box-sizing: border-box;
+  width: 40%;
 }
 
-.submitBtn {
-  cursor: pointer;
-  border-radius: 3px;
-  background-color: $base-color;
-  padding: 15px;
+.form-input {
+  box-sizing: border-box;
+  width: 60%;
+}
+
+.form-input-required {
+  color: red;
 }

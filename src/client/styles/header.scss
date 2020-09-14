@@ -5,19 +5,30 @@ header {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
-  padding: 10px 40px;
+  background-image: linear-gradient(180deg, $base-background-color 80%, $base-background-color-secondary);
+
+}
+
+.header {
+  width: $contentMaxWidth;
+  box-sizing: border-box;
+  display: flex;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  //border-bottom: 1px solid $base-color;
 }
 
 .title {
+  margin-left: 20px;
   color: $base-color;
-  font-size: 2em;
-  font-weight: 700;
 }
 
 .logo {
   & img {
-    width: 150px;
+    width: 120px;
   }
 }

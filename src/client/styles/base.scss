@@ -3,6 +3,7 @@
 html * {
   font-family: 'Roboto', serif;
   font-size: 1em;
+  color: $base-color;
 }
 
 body {
@@ -10,18 +11,75 @@ body {
   grid-template-rows: 150px auto 60px;
   grid-template-areas: "hd" "main" "ft";
   box-sizing: border-box;
-  background-color: $base-background-color;
+  background-color: $base-background-color-secondary;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2.1em;
+  line-height: 1.2em;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+button {
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid $base-color;
+  border-radius: 3px;
 }
 
 .box {
+  display: block;
+  box-sizing: border-box;
+}
+
+.card {
   border: 1px solid $base-color;
   border-radius: 3px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
+.card-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  border-bottom: 1px solid $base-color;
+}
+
+.card-footer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 1px solid $base-color;
+}
+
+.card-modal {
+  margin: 20% auto;
+  width: 500px;
+  background-color: $base-background-color-secondary;
+}
+
+.card-center {
+  align-items: center;
 }
 
 // modal
 .modal {
-  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -32,11 +90,13 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.modal-content {
-  margin: 20% auto;
-  padding: 20px;
-  width: 140px;
-  text-align: center;
+.display-none {
+  display: none;
+}
+
+// Clickable
+.clickable {
+  cursor: pointer;
 }
 
 // loading spinner (https://loading.io/)
