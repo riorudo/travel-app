@@ -6,6 +6,10 @@ input {
   padding: 5px;
 }
 
+input:invalid {
+  border: 1px solid red;
+}
+
 .form-group {
   box-sizing: border-box;
   display: flex;

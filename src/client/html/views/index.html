@@ -58,24 +58,24 @@
             </div>
         </div>
 
-        <form onsubmit="return Client.submitForm(event)">
+        <form id="travelForm" onsubmit="return Client.submitForm(event)">
             <fieldset>
                 <div class="form-group">
                     <div class="form-row">
                         <label class="form-label" for="firstName">Firstname *</label>
-                        <input class="form-input" type="text" id="firstName" name="firstName">
+                        <input required class="form-input" type="text" id="firstName" name="firstName">
                     </div>
                     <div class="form-row">
                         <label class="form-label" for="lastName">Lastname *</label>
-                        <input class="form-input" type="text" id="lastName" name="lastName">
+                        <input required class="form-input" type="text" id="lastName" name="lastName">
                     </div>
                     <div class="form-row">
                         <label class="form-label" for="destination">Destination *</label>
-                        <input class="form-input" type="text" id="destination" name="destination">
+                        <input required class="form-input" type="text" id="destination" name="destination">
                     </div>
                     <div class="form-row">
                         <label class="form-label" for="date">Date *</label>
-                        <input type="date" class="form-input" id="date" name="date"></input>
+                        <input required type="date" class="form-input" id="date" name="date"></input>
                     </div>
                 </div>
             </fieldset>
@@ -85,7 +85,7 @@
                 <button class="clickable" onclick="Client.closeFormDialog(event)">Close</button>
             </div>
             <div>
-                <button type="submit" class="clickable" onclick="Client.closeFormDialog(event)">Submit</button>
+                <button type="submit" class="clickable" onclick="Client.submitForm(event)">Submit</button>
             </div>
         </div>
     </div>
