@@ -54,7 +54,19 @@ function resetForm() {
 }
 
 function autocomplete(inputElem) {
-    inputElem.addEventListener("input", autocompleteHandler);
+    inputElem.addEventListener("input", debounce(autocompleteHandler, 500));
+}
+
+
+// Debounce function from https://stackoverflow.com/a/51493084/8712609
+function debounce(callback, delay) {
+    let timeoutHandler = null;
+    return function () {
+        clearTimeout(timeoutHandler);
+        timeoutHandler = setTimeout(function () {
+            callback();
+        }, delay);
+    }
 }
 
 function autocompleteHandler() {
