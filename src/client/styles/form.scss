@@ -1,13 +1,12 @@
 @import "variables";
 
 input {
+  box-sizing: border-box;
+  width: 100%;
   border: 1px solid $base-color;
   border-radius: 3px;
   padding: 5px;
-}
 
-input:invalid {
-  border: 1px solid red;
 }
 
 .form-group {
@@ -30,11 +29,35 @@ input:invalid {
   width: 40%;
 }
 
-.form-input {
+.form-input, .form-autocomplete {
   box-sizing: border-box;
   width: 60%;
 }
 
 .form-input-required {
   color: red;
+}
+
+.form-autocomplete {
+  position: relative;
+}
+
+.autocomplete-list {
+  display: block;
+  position: absolute;
+  padding: 0px 5px;
+  width: 100%;
+  background: white;
+  z-index: 2;
+  border: 1px solid $base-color;
+
+  & > div:not(:last-child) {
+    border-bottom: 1px solid $base-color;
+  }
+}
+
+.autocomplete-item {
+  line-height: 2em;
+  font-size: 0.7em;
+  cursor: pointer;
 }

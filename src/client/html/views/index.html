@@ -6,6 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=5" name="viewport"/>
     <meta name="description" content="Book your next travel with Space Traveller.">
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
 </head>
 
 <body>
@@ -51,7 +52,7 @@
     <div class="card card-modal">
         <div class="card-header">
             <div class="card-title">
-                <span>Enter your travel request</span>
+                <span><i class="fas fa-rocket" title="Logo"></i> Enter your travel request</span>
             </div>
             <div class="clickable" onclick="Client.closeFormDialog(event)">
                 <i class="far fa-window-close" title="Close dialog"></i>
@@ -71,7 +72,11 @@
                     </div>
                     <div class="form-row">
                         <label class="form-label" for="destination">Destination *</label>
-                        <input required class="form-input" type="text" id="destination" name="destination">
+                        <div class="form-autocomplete">
+                            <input required id="destination" type="text" autocomplete="off">
+                            <div id="autoCompleteList" class="autocomplete-list">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-row">
                         <label class="form-label" for="date">Date *</label>
@@ -85,7 +90,7 @@
                 <button class="clickable" onclick="Client.closeFormDialog(event)">Close</button>
             </div>
             <div>
-                <button type="submit" class="clickable" onclick="Client.submitForm(event)">Submit</button>
+                <button type="submit" class="clickable" onclick="Client.submitForm(event)">Book travel!</button>
             </div>
         </div>
     </div>
