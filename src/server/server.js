@@ -46,6 +46,17 @@ const getCities = async (city) => {
     }
 }
 
+const getWeatherForecast = async (destinationDetails) => {
+    const weatherForecastAPIUrl = `http://api.weatherbit.io/v2.0/forecast/daily?lat=${destinationDetails.lat}&lon=${destinationDetails.lng}&key=${process.env.WEATHERBIT_API_KEY}`;
+    try {
+        const res = await axios.get(weatherForecastAPIUrl);
+        console.log(res.data);
+        return res.data;
+    } catch (e) {
+        console.log("error", e);
+    }
+}
+
 // designates what port the app will listen to for incoming requests
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
@@ -58,6 +69,7 @@ app.get('/cities', async function (req, res) {
 
 app.post('/book-travel', async function (req, res) {
     console.log(req.body);
-    res.send(mockAPIResponse);
+    const weatherForecast = await getWeatherForecast(req.body.destinationDetails);
+    res.send(weatherForecast);
 })
 
