@@ -20,7 +20,8 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5"
+    "webpack-cli": "^3.3.5",
+    "moment": "^2.25.3"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",

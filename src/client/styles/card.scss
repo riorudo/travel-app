@@ -1,0 +1,13 @@
+@import "variables";
+
+.weatherData {
+  max-width: $contentMaxWidth;
+  width: 100%;
+  position: relative;
+  min-height: 250px;
+  background-color: white;
+}
+
+@media (min-width: 900px) {
+
+}

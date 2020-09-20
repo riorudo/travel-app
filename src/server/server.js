@@ -5,6 +5,8 @@ const mockAPIResponse = require('./mockAPI.js')
 const cors = require('cors');
 const axios = require("axios");
 const app = express()
+// Require moment to format date
+const moment = require('moment');
 
 app.use(express.static('../../dist'))
 app.use(cors());
@@ -46,12 +48,50 @@ const getCities = async (city) => {
     }
 }
 
+function mapWeatherDataValues(days, key) {
+    if (!days || days.length < 1) {
+        return;
+    }
+    const dataArr = [];
+    days.forEach((day) => {
+        let dataItem;
+        // Access nested object property over string path like 'temp.day'
+        switch (key) {
+            case ('datetime'):
+                dataItem = moment(day.datetime).format("MM/DD/YY");
+                break;
+            case ('min_temp'):
+                dataItem = day.min_temp;
+                break;
+            case ('max_temp'):
+                dataItem = day.max_temp;
+                break;
+            case ('weatherDescription'):
+                dataItem = day.weather.description;
+                break;
+            default:
+                dataItem = [];
+                break;
+        }
+        dataArr.push(dataItem);
+    });
+    return dataArr;
+}
+
 const getWeatherForecast = async (destinationDetails) => {
     const weatherForecastAPIUrl = `http://api.weatherbit.io/v2.0/forecast/daily?lat=${destinationDetails.lat}&lon=${destinationDetails.lng}&key=${process.env.WEATHERBIT_API_KEY}`;
     try {
         const res = await axios.get(weatherForecastAPIUrl);
-        console.log(res.data);
-        return res.data;
+        const data = {};
+        data.name = res.data.city_name;
+        data.coords = {};
+        data.coords.latitude = res.data.lat;
+        data.coords.longitude = res.data.lon;
+        data.date = mapWeatherDataValues(res.data.data, 'datetime');
+        data.minTemp = mapWeatherDataValues(res.data.data, 'min_temp');
+        data.maxTemp = mapWeatherDataValues(res.data.data, 'max_temp');
+        data.weatherDescription = mapWeatherDataValues(res.data.data, 'weatherDescription');
+        return data;
     } catch (e) {
         console.log("error", e);
     }
