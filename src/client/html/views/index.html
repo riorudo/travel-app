@@ -23,24 +23,19 @@
 </header>
 
 <main>
-    <section class="box">
+    <section id="welcomeCard" class="box">
         <div class="card card-center">
             <h2>Welcome to the new Space Traveller App.</h2>
             <span>At the moment you don't have any entries.</span>
             <button class="clickable" onclick="Client.openFormDialog(event)">Book your travel!</button>
         </div>
     </section>
-    <section id="errorBox" class="box error">
-        <div id="error"></div>
-    </section>
-    <section id="resultsBox" class="box results">
-        <h2 class="resultTitle">Space Travells</h2>
-        <div id="results"></div>
+    <section id="cardList" class="box">
+        <div class="card-list">
+        </div>
     </section>
 </main>
-<div class="weatherData" id="weatherData">
-    <canvas id="weatherChart"></canvas>
-</div>
+
 
 <footer>
     <div class="footer">

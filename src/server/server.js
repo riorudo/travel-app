@@ -83,7 +83,6 @@ const getWeatherForecast = async (destinationDetails) => {
     try {
         const res = await axios.get(weatherForecastAPIUrl);
         const data = {};
-        data.name = res.data.city_name;
         data.coords = {};
         data.coords.latitude = res.data.lat;
         data.coords.longitude = res.data.lon;
@@ -109,7 +108,10 @@ app.get('/cities', async function (req, res) {
 
 app.post('/book-travel', async function (req, res) {
     console.log(req.body);
-    const weatherForecast = await getWeatherForecast(req.body.destinationDetails);
-    res.send(weatherForecast);
+    let data = {};
+    data.weather = await getWeatherForecast(req.body.destinationDetails);
+    data.weather.name = req.body.destination;
+    data.form = req.body;
+    res.send(data);
 })
 

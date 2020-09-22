@@ -31,8 +31,7 @@ function submitForm(event) {
     const formData = getFormData();
     restCall('book-travel', 'Post', formData)
         .then(data => {
-            Client.drawChart(data);
-            console.log(data);
+            Client.renderCards(data);
         });
 
 }
