@@ -12,9 +12,11 @@ function openFormDialog(event) {
     autocomplete(document.getElementById('destination'));
 }
 
-function closeFormDialog(event) {
-    event.preventDefault();
-    event.stopPropagation();
+function closeFormDialog(event = undefined) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
     let formModal = document.getElementById('formModal');
     resetForm();
     Client.addClass(formModal, 'display-none');
@@ -31,7 +33,10 @@ function submitForm(event) {
     const formData = getFormData();
     restCall('book-travel', 'Post', formData)
         .then(data => {
+            closeFormDialog();
+            const randomId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
             Client.renderCards(data);
+            Client.setItem(randomId, data);
         });
 
 }
@@ -58,7 +63,6 @@ function resetForm() {
 function autocomplete(inputElem) {
     inputElem.addEventListener("input", debounce(autocompleteHandler, 500));
 }
-
 
 // Debounce function from https://stackoverflow.com/a/51493084/8712609
 function debounce(callback, delay) {

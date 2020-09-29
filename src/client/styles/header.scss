@@ -32,3 +32,10 @@ header {
     width: 120px;
   }
 }
+
+.clearBtn {
+  float: right;
+  &:after {
+    clear: both;
+  }
+}

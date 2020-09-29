@@ -9,9 +9,13 @@ function renderCard(data) {
     // for (let card in cards) {
         const cardElemStr = `
             <div class="card">
+                <div class="city-img">
+                    <img src="${data.cityImage.url}" alt="Image of ${data.form.destination}" onerror="Client.alternativeImage(event)"/>
+                </div>
                 <div class="card-travel-data">
                     <span>Destination: ${data.form.destination}</span><br>
-                    <span>Date: ${data.form.date}</span>
+                    <span>Date: ${data.form.date}</span><br>
+                    <span>Typical weather for then is: High: ${Math.round(data.weatherDay.max_temp)} °C, Low: ${Math.round(data.weatherDay.min_temp)} °C</span>
                 </div>
                 <div class="card-personal-data">
                     <span>Name: ${data.form.firstName} ${data.form.lastName}</span><br>
@@ -64,5 +68,16 @@ function drawChart(data) {
     });
 }
 
+function clearAllCards() {
+    Client.clear();
+    document.getElementById('cardList').innerHTML = '';
+}
+
+function alternativeImage(e) {
+    e.target.src = './src/client/img/alternativeImage.jpg'
+}
+
 export {drawChart}
 export {renderCards}
+export {clearAllCards}
+export {alternativeImage}
