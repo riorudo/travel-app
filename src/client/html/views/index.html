@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Space Traveller</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=5" name="viewport"/>
-    <meta name="description" content="Book your next travel with Space Traveller.">
+    <meta name="description" content="Book your next trip with Space Traveller.">
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
@@ -17,10 +17,7 @@
             <img alt="Logo of page" src="./src/client/img/logo.png">
         </div>
         <div class="title">
-            <h1>Book your next travel<br>with Space Traveller.</h1>
-        </div>
-        <div class="clearBtn">
-            <button class="clickable" onclick="Client.clearAllCards()">Cancel all Travels!</button>
+            <h1>Book your next trip<br>with Space Traveller.</h1>
         </div>
     </div>
 </header>
@@ -30,12 +27,19 @@
         <div class="card card-center">
             <h2>Welcome to the new Space Traveller App.</h2>
             <span>At the moment you don't have any entries.</span>
-            <button class="clickable" onclick="Client.openFormDialog(event)">Book your travel!</button>
+            <button class="clickable" onclick="Client.openFormDialog(event)">book your next trip!</button>
         </div>
     </section>
-    <section id="cardList" class="box">
-        <div class="card-list">
+    <section id="cardListHeader" class="box card-list-header">
+        <div>
+            <h2>Your trips:</h2>
         </div>
+        <div>
+            <button class="clickable" onclick="Client.clearAllCards()">remove all trips</button>
+            <button class="clickable" onclick="Client.openFormDialog(event)">add trip</button>
+        </div>
+    </section>
+    <section id="cardList" class="card-list" class="box">
     </section>
 </main>
 
@@ -53,10 +57,10 @@
     <div class="card card-modal">
         <div class="card-header">
             <div class="card-title">
-                <span><i class="fas fa-rocket" title="Logo"></i> Enter your travel request</span>
+                <span><i class="fas fa-rocket" title="Logo"></i> Enter your travel data</span>
             </div>
             <div class="clickable" onclick="Client.closeFormDialog(event)">
-                <i class="far fa-window-close" title="Close dialog"></i>
+                <i class="far fa-window-close" title="close dialog"></i>
             </div>
         </div>
 
@@ -88,10 +92,10 @@
         </form>
         <div class="card-footer">
             <div>
-                <button class="clickable" onclick="Client.closeFormDialog(event)">Close</button>
+                <button class="clickable" onclick="Client.closeFormDialog(event)">close</button>
             </div>
             <div>
-                <button type="submit" class="clickable" onclick="Client.submitForm(event)">Book travel!</button>
+                <button type="submit" class="clickable" onclick="Client.submitForm(event)">book trip</button>
             </div>
         </div>
     </div>

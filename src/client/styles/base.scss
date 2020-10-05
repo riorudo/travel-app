@@ -18,7 +18,7 @@ h1 {
   font-weight: 700;
   font-size: 2.1em !important;
   line-height: 1.2em;
-  color: $base-flora-white-color;
+  color: #fafad2;
 }
 
 h2 {
@@ -32,57 +32,17 @@ button {
   padding: 10px;
   border: 1px solid $base-color;
   border-radius: 3px;
+  background-color: $base-flora-white-color;
+  &:hover {
+    color: $base-flora-white-color;
+    background-color: $base-color;
+  }
 }
 
 .box {
   display: block;
   box-sizing: border-box;
 }
-
-.card {
-  border: 1px solid $base-color;
-  border-radius: 3px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 15px;
-}
-
-.card-header {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 15px;
-  border-bottom: 1px solid $base-color;
-}
-
-.card-footer {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  gap: 10px;
-  padding-top: 15px;
-  border-top: 1px solid $base-color;
-}
-
-.card-modal {
-  margin: 0 auto;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 100%;
-  background-color: $base-background-color-secondary;
-}
-
-.card-center {
-  align-items: center;
-}
-
 // modal
 .modal {
   position: fixed;
@@ -149,17 +109,6 @@ button {
 
   html * {
     font-size: 24px;
-  }
-
-  .card-modal {
-    margin: 0 auto;
-    position: absolute;
-    top: 50%;
-    left: calc(50% - 250px);
-    transform: translateX(-50%);
-    transform: translateY(-50%);
-    width: 600px;
-    background-color: $base-background-color-secondary;
   }
 }
 

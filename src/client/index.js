@@ -5,6 +5,7 @@ import {closeFormDialog} from './js/formHandler';
 import {submitForm} from './js/formHandler';
 import {drawChart} from './js/cardRenderer';
 import {renderCards} from './js/cardRenderer';
+import {clearCard} from './js/cardRenderer';
 import {clearAllCards} from './js/cardRenderer';
 import {alternativeImage} from './js/cardRenderer';
 import {setItem} from './js/storage';
@@ -23,10 +24,7 @@ import './styles/card.scss';
 import img from './img/logo.png';
 
 setTimeout(() => {
-    const travelItems = getAllItems();
-    travelItems.forEach(item => {
-        renderCards(item.value);
-    });
+    renderCards();
 }, 0);
 
 export {
@@ -42,6 +40,7 @@ export {
     closeFormDialog,
     submitForm,
     renderCards,
+    clearCard,
     clearAllCards,
     alternativeImage,
     drawChart

@@ -1,39 +1,56 @@
-function renderCards(data) {
-    renderCard(data);
-    drawChart(data.weather);
+import {getAllItems} from "./storage";
+
+function renderCards() {
+    const items = getAllItems();
+    if (!items || items.length < 1) {
+        Client.removeClass(document.getElementById('welcomeCard'), 'display-none');
+        Client.addClass(document.getElementById('cardListHeader'), 'display-none');
+        return;
+    }
+    Client.addClass(document.getElementById('welcomeCard'), 'display-none');
+    Client.removeClass(document.getElementById('cardListHeader'), 'display-none');
+    const sortedItems = sortCards(items);
+    sortedItems.forEach(sortedItems => {
+        const data = sortedItems.value;
+        renderCard(data, sortedItems.key);
+        drawChart(data.weather, sortedItems.key);
+    });
 }
 
-function renderCard(data) {
+function renderCard(data, id) {
     const cardList = document.getElementById('cardList');
     let templateStr = '';
-    // for (let card in cards) {
-        const cardElemStr = `
-            <div class="card">
-                <div class="city-img">
-                    <img src="${data.cityImage.url}" alt="Image of ${data.form.destination}" onerror="Client.alternativeImage(event)"/>
+    const cardElemStr = `
+            <div class="card ${data.styleClass}" id="card_${id}">
+                <div class="card-ribbon">trip expired</div>
+                <div class="card-header">
+                    <h3>${data.form.destination} - xxx days left</h3>
                 </div>
-                <div class="card-travel-data">
-                    <span>Destination: ${data.form.destination}</span><br>
-                    <span>Date: ${data.form.date}</span><br>
-                    <span>Typical weather for then is: High: ${Math.round(data.weatherDay.max_temp)} °C, Low: ${Math.round(data.weatherDay.min_temp)} °C</span>
+                <div class="travel-data">
+                    <div class="city-img">
+                        <img src="${data.cityImage.url}" alt="Image of ${data.form.destination}" onerror="Client.alternativeImage(event)"/>
+                    </div>
+                    <div class="travel-information">
+                        <span class="travel-information-key">Passenger: </span><span class="travel-information-value">${data.form.firstName} ${data.form.lastName}</span><br>
+                        <span class="travel-information-key">Destination: </span><span class="travel-information-value">${data.form.destination}</span><br>
+                        <span class="travel-information-key">Date: </span><span class="travel-information-value">${data.form.date}</span><br>
+                        <span class="travel-information-key">Typical weather for then is: </span><span class="travel-information-value">High: ${Math.round(data.weatherDay.max_temp)} °C, Low: ${Math.round(data.weatherDay.min_temp)} °C</span>
+                        <div class="clear-btn">
+                            <button class="clickable" title="Delete trip." onclick="Client.clearCard(event)" id="cardBtn_${id}">remove trip</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-personal-data">
-                    <span>Name: ${data.form.firstName} ${data.form.lastName}</span><br>
-                </div>
-                <div class="weather-data" id="weatherData">
-                    <canvas id="weatherChart"></canvas>
+                <div class="weather-data" id="weatherData_${id}">
+                    <canvas id="weatherChart_${id}"></canvas>
                 </div>
             </div>`
-        templateStr = `${templateStr}${cardElemStr}`;
-    // }
-    cardList.insertAdjacentHTML("afterbegin", templateStr);
-    // resultsBox.style.display = 'block';
-
+    templateStr = `${templateStr}${cardElemStr}`;
+    cardList.insertAdjacentHTML("beforeend", templateStr);
 }
 
-function drawChart(data) {
-    const canvas = document.getElementById("weatherChart");
-    canvas.style.backgroundColor = 'rgba(174, 236, 241, 1)';
+function drawChart(data, id) {
+    const canvas = document.getElementById(`weatherChart_${id}`);
+    canvas.style.backgroundColor = 'rgba(250, 250, 210, 1)';
     const ctx = canvas.getContext('2d');
     new Chart(ctx, {
         // The type of chart we want to create
@@ -60,7 +77,7 @@ function drawChart(data) {
         options: {
             title: {
                 display: true,
-                text: `Temperature in ${data.name}`
+                text: `${data.name} - 16 days temperature forecast`
             },
             responsive: true,
             maintainAspectRatio: false
@@ -68,9 +85,70 @@ function drawChart(data) {
     });
 }
 
+function sortByDateDesc(a, b) {
+    const dateA = new Date(a.value.form.date);
+    const dateB = new Date(b.value.form.date);
+    if (dateA < dateB) {
+        return 1;
+    }
+    if (dateA > dateB) {
+        return -1;
+    }
+    return 0;
+}
+
+function sortByDateAsc(a, b) {
+    const dateA = new Date(a.value.form.date);
+    const dateB = new Date(b.value.form.date);
+    if (dateA < dateB) {
+        return -1;
+    }
+    if (dateA > dateB) {
+        return 1;
+    }
+    return 0;
+}
+
+// Future dates - next coming up date -> first
+// Past dates -> last desc by date
+function sortCards(items) {
+
+    let pastDates = [];
+    let comingUpDates = [];
+    items.forEach(item => {
+        if (new Date(item.value.form.date) < new Date()) {
+            item.value.styleClass = 'past-date';
+            pastDates.push(item);
+        } else {
+            item.value.styleClass = 'coming-up-date';
+            comingUpDates.push(item)
+        }
+    });
+    comingUpDates = comingUpDates.sort(sortByDateAsc);
+    pastDates = pastDates.sort(sortByDateDesc);
+    return [...comingUpDates, ...pastDates];
+}
+
+function clearCard(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const cardId = event.target.id.replace('cardBtn_', '');
+    Client.deleteItem(cardId);
+    document.getElementById(`card_${cardId}`).remove();
+    const items = getAllItems();
+    if (!items || items.length < 1) {
+        Client.removeClass(document.getElementById('welcomeCard'), 'display-none');
+        Client.addClass(document.getElementById('cardListHeader'), 'display-none');
+    }
+}
+
 function clearAllCards() {
-    Client.clear();
-    document.getElementById('cardList').innerHTML = '';
+    if (window.confirm("All trips will be deleted. Are you sure?")) {
+        Client.clear();
+        document.getElementById('cardList').innerHTML = '';
+        Client.removeClass(document.getElementById('welcomeCard'), 'display-none');
+        Client.addClass(document.getElementById('cardListHeader'), 'display-none');
+    }
 }
 
 function alternativeImage(e) {
@@ -79,5 +157,6 @@ function alternativeImage(e) {
 
 export {drawChart}
 export {renderCards}
+export {clearCard}
 export {clearAllCards}
 export {alternativeImage}

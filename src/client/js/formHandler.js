@@ -35,8 +35,9 @@ function submitForm(event) {
         .then(data => {
             closeFormDialog();
             const randomId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-            Client.renderCards(data);
             Client.setItem(randomId, data);
+            document.getElementById('cardList').innerHTML = '';
+            Client.renderCards();
         });
 
 }
