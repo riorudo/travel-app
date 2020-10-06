@@ -5,7 +5,8 @@ footer {
   box-sizing: border-box;
   color: $base-color;
   display: block;
-  max-width: 900px;
+  max-width: $contentMaxWidth;
+  width: 100%;
   margin: auto;
 }
 

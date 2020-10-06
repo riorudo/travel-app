@@ -1,8 +1,11 @@
 @import "variables";
 
+html {
+  font-size: 18px;
+}
+
 html * {
   font-family: 'Roboto', serif;
-  font-size: 28px;
   color: $base-color;
 }
 
@@ -16,15 +19,15 @@ body {
 
 h1 {
   font-weight: 700;
-  font-size: 2.1em !important;
+  font-size: 1.3em;
   line-height: 1.2em;
   color: #fafad2;
 }
 
 h2 {
   font-weight: 500;
-  font-size: 1.2em !important;
-  line-height: 2em;
+  font-size: 1.1em;
+  line-height: 1.1em;
 }
 
 button {
@@ -43,6 +46,11 @@ button {
   display: block;
   box-sizing: border-box;
 }
+
+.text-align-center {
+  text-align: center;
+}
+
 // modal
 .modal {
   position: fixed;
@@ -105,10 +113,18 @@ button {
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 620px) {
 
-  html * {
+  html {
     font-size: 24px;
+  }
+
+  h1 {
+    font-size: 2.1em;
+  }
+
+  h2 {
+    font-size: 1.2em;
   }
 }
 

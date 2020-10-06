@@ -3,6 +3,9 @@
 
 .card {
   position: relative;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
   border: 1px solid $base-color;
   border-radius: 3px;
   padding: 20px;
@@ -65,19 +68,19 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 15px;
+  padding: 0 15px 15px 15px;
   border-bottom: 1px solid $base-color;
 }
 
 .travel-data {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding-bottom: 15px;
   border-bottom: 1px solid $base-color;
 }
 
 .travel-information {
-  margin-left: 15px;
+  margin: 0;
   line-height: 1.2em;
 }
 
@@ -91,18 +94,19 @@
 }
 
 .weather-data {
-  max-width: $contentMaxWidth;
-  width: 100%;
+  width: calc(100vw - 20px);
   position: relative;
   min-height: 250px;
   background-color: white;
 }
 
 .city-img > img {
-  width: 350px;
+  max-width: 350px;
+  width: 100%;
 }
 
 .card-ribbon {
+  font-size: .8em;
   visibility: hidden;
   line-height: 18px;
   color: #333;
@@ -160,5 +164,31 @@
     background-color: $base-background-color-secondary;
   }
 }
+
+@media (min-width: 900px) {
+
+  .card {
+    overflow: visible;
+  }
+
+  .card-ribbon {
+    font-size: 1em;
+  }
+
+  .travel-data {
+    flex-direction: row;
+  }
+
+  .travel-information {
+    margin-left: 15px;
+  }
+
+  .weather-data {
+    max-width: $contentMaxWidth;
+    width: 100%;
+  }
+
+}
+
 
 

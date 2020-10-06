@@ -6,61 +6,13 @@ main {
 }
 
 section {
-  max-width: $contentMaxWidth;
-  margin: 50px auto;
-}
-
-.error {
-  background-color: white;
-  border: 1px solid red;
-  color: red;
-  display: none;
-}
-
-.results {
-  display: none;
-  background-color: $base-color;
-}
-
-.resultTitle {
-  padding-bottom: 10px;
-}
-
-.entity {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  background-color: $base-background-color;
-}
-
-.entityKey {
-  box-sizing: border-box;
   width: 100%;
-  font-size: 1.5em;
-  font-weight: 700;
-  color: $base-color;
-  padding: 0 0 10px 0;
-}
-
-.entityItems {
-  box-sizing: border-box;
-  width: 100%;
+  margin: 30px auto;
 }
 
 @media (min-width: 900px) {
-  .entity {
-    flex-direction: row;
-  }
-
-  .entityKey {
-    width: 20%;
-    padding: 0 10px 0 0;
-  }
-
-  .entityItems {
-    width: 80%;
-    padding: 10px 0 10px 10px;
+  section {
+    max-width: $contentMaxWidth;
   }
 }
+
