@@ -24,7 +24,7 @@ function renderCard(data, id) {
             <div class="card ${data.styleClass}" id="card_${id}">
                 <div class="card-ribbon">trip expired</div>
                 <div class="card-header">
-                    <h3>${data.form.destination} - xxx days left</h3>
+                    <h3>${data.form.destination}${data.daysLeft}</h3>
                 </div>
                 <div class="travel-data">
                     <div class="city-img">
