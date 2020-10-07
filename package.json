@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "riorudo",
   "license": "MIT",
-  "description": "Book your next trip with Travel App",
+  "description": "Book your next trip with Space Traveller",
   "dependencies": {
     "axios": "^0.20.0",
     "aylien_textapi": "^0.7.0",

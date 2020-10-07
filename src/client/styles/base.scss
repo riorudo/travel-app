@@ -51,6 +51,10 @@ button {
   text-align: center;
 }
 
+.display-none {
+  display: none !important;
+}
+
 // modal
 .modal {
   position: fixed;
@@ -63,8 +67,16 @@ button {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.display-none {
-  display: none !important;
+.modal-content {
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  padding: 20px;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
 }
 
 // Clickable

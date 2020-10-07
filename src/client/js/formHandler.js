@@ -30,9 +30,17 @@ function submitForm(event) {
         elemTravelForm.reportValidity();
         return;
     }
+    if (!chosenCity) {
+        document.getElementById('destination').value = null;
+        elemTravelForm.reportValidity();
+        return;
+    }
     const formData = getFormData();
+    const loadingSpinner = document.getElementById('loadingModal');
+    Client.removeClass(loadingSpinner, 'display-none');
     restCall('book-travel', 'Post', formData)
         .then(data => {
+            Client.addClass(loadingSpinner, 'display-none');
             closeFormDialog();
             const randomId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
             Client.setItem(randomId, data);
@@ -62,7 +70,7 @@ function resetForm() {
 }
 
 function autocomplete(inputElem) {
-    inputElem.addEventListener("input", debounce(autocompleteHandler, 500));
+    inputElem.addEventListener("input", debounce(autocompleteHandler, 300));
 }
 
 // Debounce function from https://stackoverflow.com/a/51493084/8712609
