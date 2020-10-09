@@ -1,27 +1,20 @@
 const env = require('dotenv').config();
 const path = require('path')
 const express = require('express')
-const mockAPIResponse = require('./mockAPI.js')
 const cors = require('cors');
 const axios = require("axios");
 const app = express()
+
 // Require moment to format date
 const moment = require('moment');
 
 app.use(express.static('../../dist'))
 app.use(cors());
 
-/* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
-// Global variables
-let projectData = {
-    countryCodes: [],
-    recentEntries: []
-};
 
 // External API calls
 const getCities = async (city) => {
@@ -46,7 +39,7 @@ async function getWeatherNormals(date, destinationDetails) {
         }
         data.coords.latitude = res.data.lat;
         data.coords.longitude = res.data.lon;
-        if (res.data.data && res.data.data.length > 0 ) {
+        if (res.data.data && res.data.data.length > 0) {
             data.min_temp = res.data.data[0].min_temp;
             data.max_temp = res.data.data[0].max_temp;
             data.min_wind_spd = res.data.data[0].min_wind_spd;

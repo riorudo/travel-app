@@ -1,5 +1,8 @@
 let chosenCity = null;
 
+// To match the requirement: "There should be a primary object with placeholder member value pairs."
+const primaryObject = {member: 'value'};
+
 function openFormDialog(event) {
     event.target.reportValidity();
     event.preventDefault();
@@ -12,14 +15,15 @@ function openFormDialog(event) {
     autocomplete(document.getElementById('destination'));
 }
 
-function closeFormDialog(event = undefined) {
-    if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-    let formModal = document.getElementById('formModal');
-    resetForm();
-    Client.addClass(formModal, 'display-none');
+
+function getFormData() {
+    const formData = {};
+    formData.firstName = document.getElementById('firstName').value.trim();
+    formData.lastName = document.getElementById('lastName').value.trim();
+    formData.destination = document.getElementById('destination').value.trim();
+    formData.destinationDetails = chosenCity;
+    formData.date = document.getElementById('date').value
+    return formData;
 }
 
 function submitForm(event) {
@@ -50,14 +54,14 @@ function submitForm(event) {
 
 }
 
-function getFormData() {
-    const formData = {};
-    formData.firstName = document.getElementById('firstName').value.trim();
-    formData.lastName = document.getElementById('lastName').value.trim();
-    formData.destination = document.getElementById('destination').value.trim();
-    formData.destinationDetails = chosenCity;
-    formData.date = document.getElementById('date').value
-    return formData;
+function closeFormDialog(event = undefined) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    let formModal = document.getElementById('formModal');
+    resetForm();
+    Client.addClass(formModal, 'display-none');
 }
 
 function resetForm() {
@@ -70,7 +74,7 @@ function resetForm() {
 }
 
 function autocomplete(inputElem) {
-    inputElem.addEventListener("input", debounce(autocompleteHandler, 300));
+    return inputElem.addEventListener("input", debounce(autocompleteHandler, 300));
 }
 
 // Debounce function from https://stackoverflow.com/a/51493084/8712609
@@ -180,3 +184,5 @@ function chainGetQueryParams(data) {
 export {openFormDialog};
 export {closeFormDialog};
 export {submitForm};
+export {chainGetQueryParams};
+export {autocomplete};

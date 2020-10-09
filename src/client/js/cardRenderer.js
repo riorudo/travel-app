@@ -1,7 +1,5 @@
-import {getAllItems} from "./storage";
-
 function renderCards() {
-    const items = getAllItems();
+    const items = Client.getAllItems();
     if (!items || items.length < 1) {
         Client.removeClass(document.getElementById('welcomeCard'), 'display-none');
         Client.addClass(document.getElementById('cardListHeader'), 'display-none');
@@ -109,10 +107,9 @@ function sortByDateAsc(a, b) {
     return 0;
 }
 
-// Future dates - next coming up date -> first
-// Past dates -> last desc by date
+// Future dates -> next coming up date is first
+// Past dates -> nearest to current date is first
 function sortCards(items) {
-
     let pastDates = [];
     let comingUpDates = [];
     items.forEach(item => {
@@ -129,20 +126,22 @@ function sortCards(items) {
     return [...comingUpDates, ...pastDates];
 }
 
-function clearCard(event) {
+function removeCard(event) {
     event.preventDefault();
     event.stopPropagation();
-    const cardId = event.target.id.replace('cardBtn_', '');
-    Client.deleteItem(cardId);
-    document.getElementById(`card_${cardId}`).remove();
-    const items = getAllItems();
-    if (!items || items.length < 1) {
-        Client.removeClass(document.getElementById('welcomeCard'), 'display-none');
-        Client.addClass(document.getElementById('cardListHeader'), 'display-none');
+    if (window.confirm("The selected trip will be deleted. Are you sure?")) {
+        const cardId = event.target.id.replace('cardBtn_', '');
+        Client.deleteItem(cardId);
+        document.getElementById(`card_${cardId}`).remove();
+        const items = getAllItems();
+        if (!items || items.length < 1) {
+            Client.removeClass(document.getElementById('welcomeCard'), 'display-none');
+            Client.addClass(document.getElementById('cardListHeader'), 'display-none');
+        }
     }
 }
 
-function clearAllCards() {
+function removeAllCards() {
     if (window.confirm("All trips will be deleted. Are you sure?")) {
         Client.clear();
         document.getElementById('cardList').innerHTML = '';
@@ -151,12 +150,12 @@ function clearAllCards() {
     }
 }
 
-function alternativeImage(e) {
-    e.target.src = './src/client/img/alternativeImage.jpg'
+function setAlternativeImage(e) {
+    e.target.src = './src/client/img/setAlternativeImage.jpg'
 }
 
 export {drawChart}
 export {renderCards}
-export {clearCard}
-export {clearAllCards}
-export {alternativeImage}
+export {removeCard}
+export {removeAllCards}
+export {setAlternativeImage}

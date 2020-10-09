@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"/>
     <meta name="description" content="Book your next trip with Space Traveller.">
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="./src/client/js/chart.js"></script>
 </head>
 
 <body>
@@ -115,12 +115,12 @@
 </div>
 <script>
     // Check that service workers are supported
-    // if ('serviceWorker' in navigator) {
-    //     // Use the window load event to keep the page load performant
-    //     window.addEventListener('load', () => {
-    //         navigator.serviceWorker.register('/sw.js');
-    //     });
-    // }
+    if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js');
+        });
+    }
 </script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <script src="https://kit.fontawesome.com/1f202ee35e.js" crossorigin="anonymous"></script>
