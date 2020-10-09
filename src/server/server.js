@@ -1,14 +1,15 @@
 const env = require('dotenv').config();
-const path = require('path')
-const express = require('express')
+const path = require('path');
+const express = require('express');
 const cors = require('cors');
 const axios = require("axios");
-const app = express()
+const app = express();
+const regeneratorRuntime = require("regenerator-runtime");
 
 // Require moment to format date
 const moment = require('moment');
 
-app.use(express.static('../../dist'))
+app.use(express.static('../../dist'));
 app.use(cors());
 
 //Here we are configuring express to use body-parser as middle-ware.
@@ -124,7 +125,6 @@ function mapWeatherDataValues(days, key) {
 
 // designates what port the app will listen to for incoming requests
 app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
 })
 
 app.get('/cities', async function (req, res) {
@@ -141,4 +141,6 @@ app.post('/book-travel', async function (req, res) {
     data.form = req.body;
     res.send(data);
 })
+exports.formatDateForAPI = formatDateForAPI;
+
 
