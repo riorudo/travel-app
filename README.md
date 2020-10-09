@@ -1,7 +1,7 @@
 # Book your travel with Space Traveller
 
-This webpage allows you to book a dummy trip returning some information about your destination like a picture and weather forecast.
-
+On this website you can book a dummy trip and get some information about your destination like a picture and the weather forecast.
+The application uses local storage and has limited offline functionality.
 
 ## Getting started
 
@@ -9,7 +9,6 @@ This webpage allows you to book a dummy trip returning some information about yo
 - `npm install`
 
 ## Setting up the different API's (Geonames, Weatherbit and Pixabay)
-
 
 ### Step 1: Signup for an API key
 Signing up will get you an API key. \
