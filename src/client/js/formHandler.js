@@ -7,6 +7,10 @@ function openFormDialog(event) {
     event.target.reportValidity();
     event.preventDefault();
     event.stopPropagation();
+    if (!isOnline()) {
+        alert('You are offline. Please check your connection.');
+        return;
+    }
     chosenCity = null;
     let formModal = document.getElementById('formModal');
     let autoCompleteList = document.getElementById('autoCompleteList');
@@ -181,6 +185,11 @@ function chainGetQueryParams(data) {
     return queryParam;
 }
 
+function isOnline() {
+    return window.navigator.onLine;
+}
+
+export {isOnline}
 export {openFormDialog};
 export {closeFormDialog};
 export {submitForm};

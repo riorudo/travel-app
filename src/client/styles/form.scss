@@ -55,6 +55,7 @@ input {
   line-height: 1.2em;
 
   & > div:not(:last-child) {
+    padding: 6px 0;
     border-bottom: 1px solid $base-color;
   }
 }

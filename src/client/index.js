@@ -4,6 +4,7 @@ import {openFormDialog} from './js/formHandler';
 import {closeFormDialog} from './js/formHandler';
 import {submitForm} from './js/formHandler';
 import {chainGetQueryParams} from './js/formHandler';
+import {isOnline} from './js/formHandler';
 import {drawChart} from './js/cardRenderer';
 import {renderCards} from './js/cardRenderer';
 import {removeCard} from './js/cardRenderer';
@@ -54,5 +55,6 @@ export {
     setAlternativeImage,
     drawChart,
     chainGetQueryParams,
+    isOnline,
     registerAutocompleteHandler
 }
