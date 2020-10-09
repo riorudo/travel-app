@@ -12,7 +12,7 @@ function openFormDialog(event) {
     let autoCompleteList = document.getElementById('autoCompleteList');
     Client.removeClass(formModal, 'display-none');
     Client.addClass(autoCompleteList, 'display-none');
-    autocomplete(document.getElementById('destination'));
+    registerAutocompleteHandler(document.getElementById('destination'));
 }
 
 
@@ -73,7 +73,7 @@ function resetForm() {
     resetChosenCity();
 }
 
-function autocomplete(inputElem) {
+function registerAutocompleteHandler(inputElem) {
     return inputElem.addEventListener("input", debounce(autocompleteHandler, 300));
 }
 
@@ -109,10 +109,10 @@ function renderAutocompleteList(data) {
     data.forEach(item => {
         elemAutoCompleteItem = document.createElement("DIV");
         elemAutoCompleteItem.setAttribute("id", `${item['countryId']}`);
-        elemAutoCompleteItem.setAttribute("class", "autocomplete-item");
+        elemAutoCompleteItem.setAttribute("class", "registerAutocompleteHandler-item");
         elemAutoCompleteItem.innerHTML = `${item['toponymName']} (${item['countryName']})`;
         elemAutoCompleteItem.addEventListener("click", function (e) {
-            /*insert the value for the autocomplete text field:*/
+            /*insert the value for the registerAutocompleteHandler text field:*/
             document.getElementById('destination').value = e.target.innerHTML;
             setChosenCity(item);
             resetAutocompleteList();
@@ -185,4 +185,4 @@ export {openFormDialog};
 export {closeFormDialog};
 export {submitForm};
 export {chainGetQueryParams};
-export {autocomplete};
+export {registerAutocompleteHandler};

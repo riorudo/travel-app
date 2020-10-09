@@ -51,6 +51,8 @@ input {
   background: white;
   z-index: 2;
   border: 1px solid $base-color;
+  cursor: pointer;
+  line-height: 1.2em;
 
   & > div:not(:last-child) {
     border-bottom: 1px solid $base-color;

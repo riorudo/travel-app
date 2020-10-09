@@ -26,7 +26,7 @@ function renderCard(data, id) {
                 </div>
                 <div class="travel-data">
                     <div class="city-img">
-                        <img src="${data.cityImage.url}" alt="Image of ${data.form.destination}" onerror="Client.alternativeImage(event)"/>
+                        <img src="${data.cityImage.url}" alt="Image of ${data.form.destination}" onerror="Client.setAlternativeImage(event)"/>
                     </div>
                     <div class="travel-information">
                         <span class="travel-information-key">Passenger: </span><span class="travel-information-value">${data.form.firstName} ${data.form.lastName}</span><br>
@@ -34,7 +34,7 @@ function renderCard(data, id) {
                         <span class="travel-information-key">Date: </span><span class="travel-information-value">${data.form.date}</span><br>
                         <span class="travel-information-key">Typical weather for then is: </span><span class="travel-information-value">High: ${Math.round(data.weatherDay.max_temp)} °C, Low: ${Math.round(data.weatherDay.min_temp)} °C</span>
                         <div class="clear-btn">
-                            <button class="clickable" title="Delete trip." onclick="Client.clearCard(event)" id="cardBtn_${id}">remove trip</button>
+                            <button class="clickable" title="Delete trip." onclick="Client.removeCard(event)" id="cardBtn_${id}">remove trip</button>
                         </div>
                     </div>
                 </div>
@@ -131,9 +131,9 @@ function removeCard(event) {
     event.stopPropagation();
     if (window.confirm("The selected trip will be deleted. Are you sure?")) {
         const cardId = event.target.id.replace('cardBtn_', '');
-        Client.deleteItem(cardId);
+        Client.removeItem(cardId);
         document.getElementById(`card_${cardId}`).remove();
-        const items = getAllItems();
+        const items = Client.getAllItems();
         if (!items || items.length < 1) {
             Client.removeClass(document.getElementById('welcomeCard'), 'display-none');
             Client.addClass(document.getElementById('cardListHeader'), 'display-none');
@@ -143,7 +143,7 @@ function removeCard(event) {
 
 function removeAllCards() {
     if (window.confirm("All trips will be deleted. Are you sure?")) {
-        Client.clear();
+        Client.removeAllItems();
         document.getElementById('cardList').innerHTML = '';
         Client.removeClass(document.getElementById('welcomeCard'), 'display-none');
         Client.addClass(document.getElementById('cardListHeader'), 'display-none');
@@ -151,7 +151,7 @@ function removeAllCards() {
 }
 
 function setAlternativeImage(e) {
-    e.target.src = './src/client/img/setAlternativeImage.jpg'
+    e.target.src = './src/client/img/alternativeImage.jpg'
 }
 
 export {drawChart}

@@ -2,15 +2,15 @@ const ls = require('local-storage');
 
 function setItem(key, value) {
     ls.set(key, value);
-};
+}
 
 function updateItem(key, value) {
     ls.set(key, value);
-};
+}
 
 function getItem(key) {
     ls.get(key);
-};
+}
 
 function getAllItems() {
     const store = [];
@@ -34,17 +34,17 @@ function getAllItems() {
     return store;
 }
 
-function deleteItem(key) {
+function removeItem(key) {
     ls.remove(key);
 }
 
-function clear() {
+function removeAllItems() {
     ls.clear();
 }
 
 export {setItem};
 export {updateItem};
 export {getItem};
-export {deleteItem};
-export {clear};
+export {removeItem};
+export {removeAllItems};
 export {getAllItems};

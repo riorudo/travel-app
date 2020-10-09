@@ -12,12 +12,12 @@ import {setAlternativeImage} from './js/cardRenderer';
 import {setItem} from './js/storage';
 import {updateItem} from './js/storage';
 import {getItem} from './js/storage';
-import {deleteItem} from './js/storage';
-import {clear} from './js/storage';
+import {removeItem} from './js/storage';
+import {removeAllItems} from './js/storage';
 import {getAllItems} from './js/storage';
 
 // To match the requirement: "At least one event listener should be imported."
-import {autocomplete} from './js/formHandler';
+import {registerAutocompleteHandler} from './js/formHandler';
 
 import './styles/resets.scss';
 import './styles/base.scss';
@@ -27,7 +27,7 @@ import './styles/footer.scss';
 import './styles/form.scss';
 import './styles/card.scss';
 
-// Imports needed for correct sw caching
+// Imports needed for correct sw caching and offline functionality
 import './js/chart';
 import img from './img/logo.png';
 import alternativeImg from './img/alternativeImage.jpg';
@@ -40,8 +40,8 @@ export {
     setItem,
     updateItem,
     getItem,
-    deleteItem,
-    clear,
+    removeItem,
+    removeAllItems,
     getAllItems,
     addClass,
     removeClass,
@@ -54,5 +54,5 @@ export {
     setAlternativeImage,
     drawChart,
     chainGetQueryParams,
-    autocomplete
+    registerAutocompleteHandler
 }
