@@ -18,17 +18,19 @@ function getAllItems() {
         // Filter out property on dev
         if (key.startsWith('space_traveller_')) {
             const data = JSON.parse(localStorage[key]);
-            const dateNow = new Date();
-            const dateTrip = new Date(data.form.date);
-            let daysLeft = '';
-            if (dateNow <= dateTrip) {
-                const diffTime = Math.abs(dateTrip - dateNow);
-                daysLeft = ` - ${Math.ceil(diffTime / (1000 * 60 * 60 * 24))} days away`;
+            if (data && data.form && data.form.date) {
+                const dateNow = new Date();
+                const dateTrip = new Date(data.form.date);
+                let daysLeft = '';
+                if (dateNow <= dateTrip) {
+                    const diffTime = Math.abs(dateTrip - dateNow);
+                    daysLeft = ` - ${Math.ceil(diffTime / (1000 * 60 * 60 * 24))} days away`;
+                }
+                store.push({
+                    key: key,
+                    value: {...data, daysLeft: daysLeft}
+                })
             }
-            store.push({
-                key: key,
-                value: {...data, daysLeft: daysLeft}
-            })
         }
     });
     return store;
