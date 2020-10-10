@@ -50,7 +50,7 @@ function submitForm(event) {
         .then(data => {
             Client.addClass(loadingSpinner, 'display-none');
             closeFormDialog();
-            const randomId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            const randomId = `space_traveller_${Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}`;
             Client.setItem(randomId, data);
             document.getElementById('cardList').innerHTML = '';
             Client.renderCards();

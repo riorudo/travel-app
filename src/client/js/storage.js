@@ -16,7 +16,7 @@ function getAllItems() {
     const store = [];
     Object.keys(localStorage).forEach(key => {
         // Filter out property on dev
-        if (key !== 'loglevel:webpack-dev-server') {
+        if (key.startsWith('space_traveller_')) {
             const data = JSON.parse(localStorage[key]);
             const dateNow = new Date();
             const dateTrip = new Date(data.form.date);
