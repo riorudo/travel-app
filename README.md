@@ -41,7 +41,7 @@ $ npm run dev // runs on http://localhost:8080
 ### Step 2: Run node server
 After the build process is completed, start your node server.
 ```
-$ node index.js // runs on http://localhost:3000
+$ npm run start // runs on http://localhost:3000
 ```
 
 ### Step 3: Start using the application

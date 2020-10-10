@@ -9,7 +9,7 @@ const regeneratorRuntime = require("regenerator-runtime");
 // Require moment to format date
 const moment = require('moment');
 
-app.use(express.static('../../dist'));
+app.use(express.static('dist'));
 app.use(cors());
 
 //Here we are configuring express to use body-parser as middle-ware.
