@@ -144,7 +144,7 @@ app.post('/book-travel', async function (req, res) {
     let data = {};
     data.weather = await getWeatherForecast(req.body.destinationDetails);
     // data.weatherDay = await getWeatherNormals(req.body.date, req.body.destinationDetails);
-    data.weatherDay = {min_temp: calculateAverage(data.weather.min_temp), max_temp: calculateAverage(data.weather.max_temp)};
+    data.weatherDay = {min_temp: calculateAverage(data.weather.minTemp), max_temp: calculateAverage(data.weather.maxTemp)};
     data.cityImage = await getCityImages(req.body.destination);
     data.weather.name = req.body.destination;
     data.form = req.body;
