@@ -30,7 +30,7 @@ const getCities = async (city) => {
 
 async function getWeatherNormals(date, destinationDetails) {
     const apiDate = formatDateForAPI(date);
-    const weatherForecastAPIUrl = encodeURI(`https://api.weatherbit.io/v2.0/normals?lat=${destinationDetails.lat}&lon=${destinationDetails.lng}&start_day=${apiDate}&end_day=${apiDate}&key=${process.env.WEATHERBIT_API_KEY}`);
+    const weatherForecastAPIUrl = encodeURI(`https://api.weatherbit.io/v2.0/normals?lat=${destinationDetails.lat}&lon=${destinationDetails.lng}&start_day=${apiDate}&end_day=${apiDate}&key=b90efa52b5ae4125b1e0892a6e637e6b`);
     try {
         const res = await axios.get(weatherForecastAPIUrl);
         const data = {};
@@ -53,7 +53,7 @@ async function getWeatherNormals(date, destinationDetails) {
 }
 
 const getWeatherForecast = async (destinationDetails) => {
-    const weatherForecastAPIUrl = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${destinationDetails.lat}&lon=${destinationDetails.lng}&key=${process.env.WEATHERBIT_API_KEY}`;
+    const weatherForecastAPIUrl = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${destinationDetails.lat}&lon=${destinationDetails.lng}&key=b90efa52b5ae4125b1e0892a6e637e6b`;
     try {
         const res = await axios.get(weatherForecastAPIUrl);
         const data = {};
@@ -86,10 +86,18 @@ const getCityImages = async (city) => {
     }
 }
 
-
 // Helper functions
 function formatDateForAPI(date) {
     return date.substring(5, 10);
+}
+
+
+function calculateAverage(arr) {
+    if (!arr || arr.length < 1) {
+        return 0;
+    }
+    const sum = arr.reduce((a, b) => a + b, 0);
+    return (sum / arr.length) || 0;
 }
 
 
@@ -135,7 +143,8 @@ app.get('/cities', async function (req, res) {
 app.post('/book-travel', async function (req, res) {
     let data = {};
     data.weather = await getWeatherForecast(req.body.destinationDetails);
-    data.weatherDay = await getWeatherNormals(req.body.date, req.body.destinationDetails);
+    // data.weatherDay = await getWeatherNormals(req.body.date, req.body.destinationDetails);
+    data.weatherDay = {min_temp: calculateAverage(data.weather.min_temp), max_temp: calculateAverage(data.weather.max_temp)};
     data.cityImage = await getCityImages(req.body.destination);
     data.weather.name = req.body.destination;
     data.form = req.body;
